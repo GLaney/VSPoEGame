@@ -1,0 +1,19 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific files
+.import/
+export/
+.mono/
+.vscode/
+
+# Editor temporary files
+*.tscn.local
+*.gd.local
+*.csproj.user
+*.sln.user
+.DS_Store
+
+# User data
+user://
