@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AugmentBase" load_steps=2 format=3 uid="uid://c26uw7fd15a1q"]
+
+[ext_resource type="Script" uid="uid://v425w618o05e" path="res://Scripts/augment_base.gd" id="1_liy4i"]
+
+[resource]
+script = ExtResource("1_liy4i")
+augment_name = "Fire Explosion"
+description = "Fire skills explode on impact."
+required_tags = Array[String](["fire"])
+forbidden_tags = Array[String]([])
+requires_all_tags = Array[String]([])
+damage_multiplier = 1.2
+damage_flat = 0.0
+cooldown_multiplier = 1.0
+speed_multiplier = 1.0
+range_multiplier = 1.0
+adds_chain = false
+chain_count = 0
+adds_explosion = true
+explosion_radius = 80.0
+adds_pierce = false
+pierce_count = 0
+spawns_minion_on_hit = false
+metadata/_custom_type_script = "uid://v425w618o05e"

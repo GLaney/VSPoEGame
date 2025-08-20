@@ -1,0 +1,117 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://t8pj58ufvlp0"]
+
+[ext_resource type="Script" uid="uid://ui5e2ayh2ylt" path="res://Scripts/projectile.gd" id="1_tsclj"]
+[ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://Resources/pistol/projectile.png" id="2_7si33"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
+radius = 17.1172
+
+[sub_resource type="PackedScene" id="PackedScene_la6cj"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741827, 1073741826, 15, 14, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Projectile", "Area2D", "top_level", "rotation", "collision_layer", "collision_mask", "script", "Projectile", "Sprite2D", "position", "texture", "CollisionShape2D", "CollisionShape2D", "shape", "_on_body_entered", "body_entered"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 1073741824, 0, 8, 7, -1, 2, 9, 5, 10, 6, 0, 1073741825, 0, 12, 11, -1, 1, 13, 7, 0),
+"variants": [true, 0.450764, 0, 3, ExtResource("1_tsclj"), Vector2(-11, 0), ExtResource("2_7si33"), SubResource("CircleShape2D_v8qja")],
+"version": 3
+}
+
+[sub_resource type="GDScript" id="GDScript_a3gnb"]
+script/source = "extends Resource
+class_name SkillBase
+
+@export var skill_name: String
+@export var base_damage: float = 10.0
+@export var base_cooldown: float = 1.0
+@export var base_range: float = 1200.0
+@export var base_speed: float = 1000.0
+
+# NEW: Tag-based system
+@export var tags: Array[String] = []  # e.g. [\"projectile\", \"fire\", \"spell\"]
+@export var execution_scene: PackedScene  # What happens when skill fires
+
+# These will be modified by augments
+var current_damage: float
+var current_cooldown: float
+var current_range: float
+var current_speed: float
+var augments: Array[AugmentBase] = []
+
+func _init():
+	reset_to_base_stats()
+
+func reset_to_base_stats():
+	current_damage = base_damage
+	current_cooldown = base_cooldown
+	current_range = base_range
+	current_speed = base_speed
+
+func has_tag(tag: String) -> bool:
+	return tag in tags
+
+func has_any_tag(check_tags: Array[String]) -> bool:
+	for tag in check_tags:
+		if has_tag(tag):
+			return true
+	return false
+
+func has_all_tags(check_tags: Array[String]) -> bool:
+	for tag in check_tags:
+		if not has_tag(tag):
+			return false
+	return true
+
+func can_add_augment(augment: AugmentBase) -> bool:
+	# Check if we already have this augment
+	for existing_augment in augments:
+		if existing_augment.augment_name == augment.augment_name:
+			return false
+	
+	# Check if we're at max augments
+	if augments.size() >= 4:
+		return false
+	
+	# Check tag compatibility
+	if not augment.is_compatible_with_skill(self):
+		return false
+	
+	return true
+
+func add_augment(augment: AugmentBase) -> bool:
+	if can_add_augment(augment):
+		augments.append(augment)
+		apply_augment(augment)
+		return true
+	return false
+
+func apply_augment(augment: AugmentBase):
+	# Apply stat modifications
+	current_damage *= augment.damage_multiplier
+	current_damage += augment.damage_flat
+	current_cooldown *= augment.cooldown_multiplier
+	current_speed *= augment.speed_multiplier
+	current_range *= augment.range_multiplier
+
+func remove_augment(augment: AugmentBase):
+	augments.erase(augment)
+	recalculate_stats()
+
+func recalculate_stats():
+	reset_to_base_stats()
+	for augment in augments:
+		apply_augment(augment)
+"
+
+[resource]
+script = SubResource("GDScript_a3gnb")
+skill_name = "Fireball"
+base_damage = 25.0
+base_cooldown = 1.5
+base_range = 1200.0
+base_speed = 800.0
+tags = Array[String](["projectile", "fire", "spell"])
+execution_scene = SubResource("PackedScene_la6cj")
+metadata/_custom_type_script = "uid://duvkn131ig8ox"

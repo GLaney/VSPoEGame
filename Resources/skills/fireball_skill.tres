@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SkillBase" load_steps=3 format=3 uid="uid://dfubvaufq5y6e"]
+
+[ext_resource type="Script" uid="uid://duvkn131ig8ox" path="res://Scripts/skill_base.gd" id="1_5x2dw"]
+[ext_resource type="PackedScene" uid="uid://brv6vgv32nh42" path="res://Scenes/executions/fireball_execution.tscn" id="1_a3gnb"]
+
+[resource]
+script = ExtResource("1_5x2dw")
+skill_name = "Fireball"
+base_damage = 25.0
+base_cooldown = 1.5
+base_range = 1200.0
+base_speed = 800.0
+tags = Array[String](["projectile", "fire", "spell"])
+execution_scene = ExtResource("1_a3gnb")
+metadata/_custom_type_script = "uid://duvkn131ig8ox"

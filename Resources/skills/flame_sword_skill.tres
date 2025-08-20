@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillBase" load_steps=2 format=3 uid="uid://dl41wdra8bavs"]
+
+[ext_resource type="Script" uid="uid://duvkn131ig8ox" path="res://Scripts/skill_base.gd" id="1_rflhs"]
+
+[resource]
+script = ExtResource("1_rflhs")
+skill_name = "Flame Sword"
+base_damage = 40.0
+base_cooldown = 2.0
+base_range = 120.0
+base_speed = 1000.0
+tags = Array[String](["melee", "fire", "weapon", "chaining", "instant"])
+metadata/_custom_type_script = "uid://duvkn131ig8ox"

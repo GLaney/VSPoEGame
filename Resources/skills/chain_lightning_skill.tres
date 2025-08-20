@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillBase" load_steps=2 format=3 uid="uid://cy1j1iexkc0ns"]
+
+[ext_resource type="Script" uid="uid://duvkn131ig8ox" path="res://Scripts/skill_base.gd" id="1_exgc1"]
+
+[resource]
+script = ExtResource("1_exgc1")
+skill_name = "Chain Lightning"
+base_damage = 30.0
+base_cooldown = 2.5
+base_range = 600.0
+base_speed = 0.0
+tags = Array[String](["spell", "lightning", "chaining", "instant"])
+metadata/_custom_type_script = "uid://duvkn131ig8ox"

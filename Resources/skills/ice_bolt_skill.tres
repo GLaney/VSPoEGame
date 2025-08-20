@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SkillBase" load_steps=3 format=3 uid="uid://dstyxmvi08ooi"]
+
+[ext_resource type="Script" uid="uid://duvkn131ig8ox" path="res://Scripts/skill_base.gd" id="1_3ml7j"]
+[ext_resource type="PackedScene" uid="uid://bdm1ubql8qott" path="res://Scenes/executions/ice_bolt_execution.tscn" id="1_u30n4"]
+
+[resource]
+script = ExtResource("1_3ml7j")
+skill_name = "Ice Bolt"
+base_damage = 20.0
+base_cooldown = 1.0
+base_range = 1000.0
+base_speed = 900.0
+tags = Array[String](["projectile", "cold", "spell"])
+execution_scene = ExtResource("1_u30n4")
+metadata/_custom_type_script = "uid://duvkn131ig8ox"

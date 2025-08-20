@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AugmentBase" load_steps=2 format=3 uid="uid://68ubqqkoajji"]
+
+[ext_resource type="Script" uid="uid://v425w618o05e" path="res://Scripts/augment_base.gd" id="1_foatf"]
+
+[resource]
+script = ExtResource("1_foatf")
+augment_name = "Added Chains"
+description = "Projectiles and chaining skills chain to nearby enemies."
+required_tags = Array[String](["projectile", "chaining"])
+forbidden_tags = Array[String]([])
+requires_all_tags = Array[String]([])
+damage_multiplier = 1.1
+damage_flat = 0.0
+cooldown_multiplier = 1.0
+speed_multiplier = 1.0
+range_multiplier = 1.0
+adds_chain = true
+chain_count = 2
+adds_explosion = false
+explosion_radius = 0.0
+adds_pierce = false
+pierce_count = 0
+spawns_minion_on_hit = false
+metadata/_custom_type_script = "uid://v425w618o05e"
